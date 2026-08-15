@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>موقع الفيديوهات</title>
+    <title>هيمنة العرب | منصة الفيديوهات</title>
 
     <style>
         * {
@@ -13,53 +13,224 @@
 
         body {
             margin: 0;
-            background: #111;
-            color: white;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Tahoma, sans-serif;
+            background: #0b0b0f;
+            color: #fff;
         }
 
+        /* الهيدر */
         header {
-            background: #222;
-            padding: 20px;
-            text-align: center;
+            background: #15151c;
+            border-bottom: 1px solid #292933;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        header h1 {
-            margin: 0;
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #e63946;
+        }
+
+        /* البحث */
+        .search {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 12px 18px;
+            border: 1px solid #33333d;
+            border-radius: 25px;
+            background: #22222b;
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .search input:focus {
+            border-color: #e63946;
+        }
+
+        /* المحتوى */
         .container {
-            width: 90%;
-            max-width: 900px;
+            width: 92%;
+            max-width: 1200px;
             margin: 30px auto;
         }
 
-        .video-card {
-            background: #222;
-            padding: 20px;
-            border-radius: 12px;
+        .welcome {
+            margin-bottom: 25px;
         }
 
-        .thumbnail {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .welcome h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: #aaa;
+        }
+
+        /* الفيديو */
+        .video-card {
+            background: #17171e;
+            border: 1px solid #292933;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .video-title {
+            padding: 18px 20px 10px;
+        }
+
+        .video-title h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .video-wrapper {
+            background: #000;
         }
 
         video {
             width: 100%;
+            max-height: 650px;
             display: block;
-            background: black;
-            border-radius: 10px;
+            background: #000;
         }
 
-        h2 {
-            margin-top: 0;
+        .info {
+            padding: 20px;
         }
 
-        p {
-            color: #ccc;
+        .info p {
+            color: #aaa;
+            line-height: 1.8;
+            margin: 10px 0 0;
+        }
+
+        /* الأزرار */
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: #25252f;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #e63946;
+        }
+
+        /* فيديوهات مقترحة */
+        .section-title {
+            font-size: 22px;
+            margin: 35px 0 18px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .mini-card {
+            background: #17171e;
+            border: 1px solid #292933;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .mini-card:hover {
+            transform: translateY(-3px);
+            border-color: #e63946;
+        }
+
+        .mini-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mini-card h3 {
+            font-size: 15px;
+            margin: 12px;
+        }
+
+        /* الفوتر */
+        footer {
+            margin-top: 50px;
+            padding: 25px;
+            text-align: center;
+            background: #15151c;
+            color: #888;
+            border-top: 1px solid #292933;
+        }
+
+        /* الهاتف */
+        @media (max-width: 800px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            .search {
+                width: 100%;
+                max-width: none;
+            }
+
+            .videos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 94%;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-title h2 {
+                font-size: 19px;
+            }
         }
     </style>
 </head>
@@ -67,37 +238,147 @@
 <body>
 
     <header>
-        <h1>🎬 موقع الفيديوهات</h1>
+        <div class="header-content">
+
+            <div class="logo">
+                هيمنة <span>العرب</span>
+            </div>
+
+            <div class="search">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="🔎 ابحث عن فيديو..."
+                >
+            </div>
+
+        </div>
     </header>
 
     <main class="container">
 
-        <div class="video-card">
+        <section class="welcome">
+            <h1>مرحباً بك في هيمنة العرب</h1>
+            <p>شاهد أحدث الفيديوهات في مكان واحد.</p>
+        </section>
 
-            <h2>الفيديو الأول</h2>
+        <!-- الفيديو الرئيسي -->
+        <article class="video-card">
 
-            <img
-                class="thumbnail"
-                src="./video1.jpg"
-                alt="صورة الفيديو"
-            >
+            <div class="video-title">
+                <h2>الفيديو الأول</h2>
+            </div>
 
-            <video
-                controls
-                preload="metadata"
-                poster="./video1.jpg"
-            >
-                <source src="./video1.mp4" type="video/mp4">
-                المتصفح ديالك ما كيدعمش تشغيل الفيديو.
-            </video>
+            <div class="video-wrapper">
 
-            <p>
-                مرحباً بكم في موقع الفيديوهات.
-            </p>
+                <video
+                    controls
+                    controlsList="nodownload"
+                    preload="metadata"
+                    poster="./video1.jpg"
+                    oncontextmenu="return false;"
+                >
+                    <source src="./video1.mp4" type="video/mp4">
+                    المتصفح ديالك ما كيدعمش تشغيل الفيديو.
+                </video>
 
-        </div>
+            </div>
+
+            <div class="info">
+
+                <p>
+                    مرحباً بكم في منصة هيمنة العرب.
+                    استمتع بمشاهدة الفيديو بجودة مناسبة على الهاتف والحاسوب.
+                </p>
+
+                <div class="actions">
+                    <button class="btn" onclick="likeVideo()">
+                        ❤️ إعجاب
+                    </button>
+
+                    <button class="btn" onclick="shareVideo()">
+                        🔗 مشاركة
+                    </button>
+                </div>
+
+            </div>
+
+        </article>
+
+        <!-- فيديوهات أخرى -->
+        <h2 class="section-title">🎬 فيديوهات أخرى</h2>
+
+        <section class="videos-grid" id="videosGrid">
+
+            <div class="mini-card" data-title="الفيديو الأول">
+                <img src="./video1.jpg" alt="الفيديو الأول">
+                <h3>الفيديو الأول</h3>
+            </div>
+
+            <div class="mini-card" data-title="فيديو جديد">
+                <img src="./video1.jpg" alt="فيديو جديد">
+                <h3>فيديو جديد</h3>
+            </div>
+
+            <div class="mini-card" data-title="فيديو مميز">
+                <img src="./video1.jpg" alt="فيديو مميز">
+                <h3>فيديو مميز</h3>
+            </div>
+
+            <div class="mini-card" data-title="أحدث الفيديوهات">
+                <img src="./video1.jpg" alt="أحدث الفيديوهات">
+                <h3>أحدث الفيديوهات</h3>
+            </div>
+
+        </section>
 
     </main>
+
+    <footer>
+        © 2026 هيمنة العرب — جميع الحقوق محفوظة
+    </footer>
+
+    <script>
+        function likeVideo() {
+            alert("شكراً على إعجابك ❤️");
+        }
+
+        function shareVideo() {
+            if (navigator.share) {
+                navigator.share({
+                    title: "هيمنة العرب",
+                    text: "شاهد هذا الفيديو على هيمنة العرب",
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert("تم نسخ رابط الموقع 🔗");
+            }
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        const cards = document.querySelectorAll(".mini-card");
+
+        searchInput.addEventListener("input", function () {
+
+            const search = this.value.toLowerCase().trim();
+
+            cards.forEach(function(card) {
+
+                const title = card
+                    .getAttribute("data-title")
+                    .toLowerCase();
+
+                if (title.includes(search)) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+        });
+    </script>
 
 </body>
 </html>
