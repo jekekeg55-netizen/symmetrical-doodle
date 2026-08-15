@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>هيمنة العرب | منصة الفيديوهات</title>
 
     <style>
@@ -15,10 +14,9 @@
             margin: 0;
             font-family: Arial, Tahoma, sans-serif;
             background: #0b0b0f;
-            color: #fff;
+            color: white;
         }
 
-        /* الهيدر */
         header {
             background: #15151c;
             border-bottom: 1px solid #292933;
@@ -40,7 +38,6 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #fff;
             white-space: nowrap;
         }
 
@@ -48,7 +45,6 @@
             color: #e63946;
         }
 
-        /* البحث */
         .search {
             flex: 1;
             max-width: 500px;
@@ -69,7 +65,6 @@
             border-color: #e63946;
         }
 
-        /* المحتوى */
         .container {
             width: 92%;
             max-width: 1200px;
@@ -90,7 +85,6 @@
             color: #aaa;
         }
 
-        /* الفيديو */
         .video-card {
             background: #17171e;
             border: 1px solid #292933;
@@ -129,7 +123,6 @@
             margin: 10px 0 0;
         }
 
-        /* الأزرار */
         .actions {
             display: flex;
             gap: 10px;
@@ -151,7 +144,6 @@
             background: #e63946;
         }
 
-        /* فيديوهات مقترحة */
         .section-title {
             font-size: 22px;
             margin: 35px 0 18px;
@@ -189,7 +181,6 @@
             margin: 12px;
         }
 
-        /* الفوتر */
         footer {
             margin-top: 50px;
             padding: 25px;
@@ -199,7 +190,6 @@
             border-top: 1px solid #292933;
         }
 
-        /* الهاتف */
         @media (max-width: 800px) {
             .header-content {
                 flex-direction: column;
@@ -213,10 +203,6 @@
             .videos-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
-            .welcome h1 {
-                font-size: 25px;
-            }
         }
 
         @media (max-width: 500px) {
@@ -228,8 +214,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .video-title h2 {
-                font-size: 19px;
+            .welcome h1 {
+                font-size: 25px;
             }
         }
     </style>
@@ -237,148 +223,152 @@
 
 <body>
 
-    <header>
-        <div class="header-content">
+<header>
+    <div class="header-content">
 
-            <div class="logo">
-                هيمنة <span>العرب</span>
-            </div>
+        <div class="logo">
+            هيمنة <span>العرب</span>
+        </div>
 
-            <div class="search">
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="🔎 ابحث عن فيديو..."
-                >
+        <div class="search">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="🔎 ابحث عن فيديو..."
+            >
+        </div>
+
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <h1>مرحباً بك في هيمنة العرب</h1>
+        <p>شاهد أحدث الفيديوهات في مكان واحد.</p>
+    </section>
+
+    <!-- الفيديو 1 -->
+    <article class="video-card">
+
+        <div class="video-title">
+            <h2>الفيديو الأول</h2>
+        </div>
+
+        <div class="video-wrapper">
+
+            <video
+                controls
+                controlsList="nodownload"
+                preload="metadata"
+                poster="./video1.jpg"
+                oncontextmenu="return false;"
+            >
+                <source src="./video1.mp4" type="video/mp4">
+                المتصفح ديالك ما كيدعمش تشغيل الفيديو.
+            </video>
+
+        </div>
+
+        <div class="info">
+
+            <p>
+                شاهد الفيديو الأول على منصة هيمنة العرب.
+            </p>
+
+            <div class="actions">
+
+                <button class="btn" onclick="likeVideo()">
+                    ❤️ إعجاب
+                </button>
+
+                <button class="btn" onclick="shareVideo()">
+                    🔗 مشاركة
+                </button>
+
             </div>
 
         </div>
-    </header>
 
-    <main class="container">
+    </article>
 
-        <section class="welcome">
-            <h1>مرحباً بك في هيمنة العرب</h1>
-            <p>شاهد أحدث الفيديوهات في مكان واحد.</p>
-        </section>
+    <!-- الفيديوهات -->
+    <h2 class="section-title">🎬 أحدث الفيديوهات</h2>
 
-        <!-- الفيديو الرئيسي -->
-        <article class="video-card">
+    <section class="videos-grid" id="videosGrid">
 
-            <div class="video-title">
-                <h2>الفيديو الأول</h2>
-            </div>
+        <div class="mini-card" data-title="الفيديو الأول">
+            <img src="./video1.jpg" alt="الفيديو الأول">
+            <h3>الفيديو الأول</h3>
+        </div>
 
-            <div class="video-wrapper">
+        <div class="mini-card" data-title="الفيديو الثاني">
+            <img src="./video2.jpg" alt="الفيديو الثاني">
+            <h3>الفيديو الثاني</h3>
+        </div>
 
-                <video
-                    controls
-                    controlsList="nodownload"
-                    preload="metadata"
-                    poster="./video1.jpg"
-                    oncontextmenu="return false;"
-                >
-                    <source src="./video1.mp4" type="video/mp4">
-                    المتصفح ديالك ما كيدعمش تشغيل الفيديو.
-                </video>
+    </section>
 
-            </div>
+</main>
 
-            <div class="info">
+<footer>
+    © 2026 هيمنة العرب — جميع الحقوق محفوظة
+</footer>
 
-                <p>
-                    مرحباً بكم في منصة هيمنة العرب.
-                    استمتع بمشاهدة الفيديو بجودة مناسبة على الهاتف والحاسوب.
-                </p>
+<script>
 
-                <div class="actions">
-                    <button class="btn" onclick="likeVideo()">
-                        ❤️ إعجاب
-                    </button>
+    function likeVideo() {
+        alert("شكراً على إعجابك ❤️");
+    }
 
-                    <button class="btn" onclick="shareVideo()">
-                        🔗 مشاركة
-                    </button>
-                </div>
+    function shareVideo() {
 
-            </div>
+        if (navigator.share) {
 
-        </article>
-
-        <!-- فيديوهات أخرى -->
-        <h2 class="section-title">🎬 فيديوهات أخرى</h2>
-
-        <section class="videos-grid" id="videosGrid">
-
-            <div class="mini-card" data-title="الفيديو الأول">
-                <img src="./video1.jpg" alt="الفيديو الأول">
-                <h3>الفيديو الأول</h3>
-            </div>
-
-            <div class="mini-card" data-title="فيديو جديد">
-                <img src="./video1.jpg" alt="فيديو جديد">
-                <h3>فيديو جديد</h3>
-            </div>
-
-            <div class="mini-card" data-title="فيديو مميز">
-                <img src="./video1.jpg" alt="فيديو مميز">
-                <h3>فيديو مميز</h3>
-            </div>
-
-            <div class="mini-card" data-title="أحدث الفيديوهات">
-                <img src="./video1.jpg" alt="أحدث الفيديوهات">
-                <h3>أحدث الفيديوهات</h3>
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer>
-        © 2026 هيمنة العرب — جميع الحقوق محفوظة
-    </footer>
-
-    <script>
-        function likeVideo() {
-            alert("شكراً على إعجابك ❤️");
-        }
-
-        function shareVideo() {
-            if (navigator.share) {
-                navigator.share({
-                    title: "هيمنة العرب",
-                    text: "شاهد هذا الفيديو على هيمنة العرب",
-                    url: window.location.href
-                });
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert("تم نسخ رابط الموقع 🔗");
-            }
-        }
-
-        const searchInput = document.getElementById("searchInput");
-        const cards = document.querySelectorAll(".mini-card");
-
-        searchInput.addEventListener("input", function () {
-
-            const search = this.value.toLowerCase().trim();
-
-            cards.forEach(function(card) {
-
-                const title = card
-                    .getAttribute("data-title")
-                    .toLowerCase();
-
-                if (title.includes(search)) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-
+            navigator.share({
+                title: "هيمنة العرب",
+                text: "شاهد هذا الفيديو على هيمنة العرب",
+                url: window.location.href
             });
 
+        } else {
+
+            navigator.clipboard.writeText(window.location.href);
+
+            alert("تم نسخ رابط الموقع 🔗");
+
+        }
+    }
+
+    const searchInput = document.getElementById("searchInput");
+
+    const cards = document.querySelectorAll(".mini-card");
+
+    searchInput.addEventListener("input", function () {
+
+        const search = this.value.toLowerCase().trim();
+
+        cards.forEach(function(card) {
+
+            const title = card
+                .getAttribute("data-title")
+                .toLowerCase();
+
+            if (title.includes(search)) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
         });
-    </script>
+
+    });
+
+</script>
 
 </body>
 </html>
