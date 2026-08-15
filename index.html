@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>موقع الفيديوهات</title>
 
     <style>
@@ -12,9 +13,9 @@
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
             background: #111;
             color: white;
+            font-family: Arial, sans-serif;
         }
 
         header {
@@ -28,15 +29,15 @@
         }
 
         .container {
+            width: 90%;
             max-width: 900px;
             margin: 30px auto;
-            padding: 15px;
         }
 
         .video-card {
             background: #222;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 12px;
         }
 
         .video-card h2 {
@@ -44,16 +45,15 @@
         }
 
         video {
-            display: block;
             width: 100%;
-            max-height: 600px;
-            border-radius: 8px;
+            display: block;
             background: black;
+            border-radius: 10px;
         }
 
         .description {
-            margin-top: 15px;
             color: #ccc;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -61,27 +61,27 @@
 <body>
 
     <header>
-        <h1>موقع الفيديوهات</h1>
+        <h1>🎬 موقع الفيديوهات</h1>
     </header>
 
-    <main class="container">
+    <div class="container">
 
         <div class="video-card">
 
             <h2>الفيديو الأول</h2>
 
-            <video controls>
-                <source src="videos/video1.mp4" type="video/mp4">
+            <video controls preload="metadata">
+                <source src="video1.mp4" type="video/mp4">
                 المتصفح ديالك ما كيدعمش تشغيل الفيديو.
             </video>
 
             <p class="description">
-                هذا هو الفيديو الأول في الموقع.
+                مرحباً بكم في موقع الفيديوهات.
             </p>
 
         </div>
 
-    </main>
+    </div>
 
 </body>
 </html>
