@@ -40,8 +40,11 @@
             border-radius: 12px;
         }
 
-        .video-card h2 {
-            margin-top: 0;
+        .thumbnail {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         video {
@@ -51,9 +54,12 @@
             border-radius: 10px;
         }
 
-        .description {
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
             color: #ccc;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -64,24 +70,34 @@
         <h1>🎬 موقع الفيديوهات</h1>
     </header>
 
-    <div class="container">
+    <main class="container">
 
         <div class="video-card">
 
             <h2>الفيديو الأول</h2>
 
-            <video controls preload="metadata">
-                <source src="video1.mp4" type="video/mp4">
+            <img
+                class="thumbnail"
+                src="./video1.jpg"
+                alt="صورة الفيديو"
+            >
+
+            <video
+                controls
+                preload="metadata"
+                poster="./video1.jpg"
+            >
+                <source src="./video1.mp4" type="video/mp4">
                 المتصفح ديالك ما كيدعمش تشغيل الفيديو.
             </video>
 
-            <p class="description">
+            <p>
                 مرحباً بكم في موقع الفيديوهات.
             </p>
 
         </div>
 
-    </div>
+    </main>
 
 </body>
 </html>
