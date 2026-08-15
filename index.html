@@ -1,81 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Video Site</title>
-    <link rel="stylesheet" href="style.css">
+    <title>موقع الفيديوهات</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        header {
+            background: #222;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .video-card {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .video-card h2 {
+            margin-top: 0;
+        }
+
+        video {
+            display: block;
+            width: 100%;
+            max-height: 600px;
+            border-radius: 8px;
+            background: black;
+        }
+
+        .description {
+            margin-top: 15px;
+            color: #ccc;
+        }
+    </style>
 </head>
 
 <body>
 
     <header>
-        <h1>🎬 My Video Site</h1>
-
-        <input
-            type="text"
-            id="search"
-            placeholder="Search videos..."
-        >
+        <h1>موقع الفيديوهات</h1>
     </header>
 
-    <main>
-        <section class="video-grid" id="videoGrid">
+    <main class="container">
 
-            <div class="video-card" data-title="Video 1">
-                <img src="images/video1.jpg" alt="Video 1">
+        <div class="video-card">
 
-                <h2>Video 1</h2>
+            <h2>الفيديو الأول</h2>
 
-                <button onclick="playVideo('videos/video1.mp4', 'Video 1')">
-                    ▶ Play
-                </button>
-            </div>
-
-            <div class="video-card" data-title="Video 2">
-                <img src="images/video2.jpg" alt="Video 2">
-
-                <h2>Video 2</h2>
-
-                <button onclick="playVideo('videos/video2.mp4', 'Video 2')">
-                    ▶ Play
-                </button>
-            </div>
-
-            <div class="video-card" data-title="Video 3">
-                <img src="images/video3.jpg" alt="Video 3">
-
-                <h2>Video 3</h2>
-
-                <button onclick="playVideo('videos/video3.mp4', 'Video 3')">
-                    ▶ Play
-                </button>
-            </div>
-
-            <div class="video-card" data-title="Video 4">
-                <img src="images/video4.jpg" alt="Video 4">
-
-                <h2>Video 4</h2>
-
-                <button onclick="playVideo('videos/video4.mp4', 'Video 4')">
-                    ▶ Play
-                </button>
-            </div>
-
-        </section>
-
-        <section class="player-section" id="playerSection">
-
-            <h2 id="videoTitle">اختار فيديو</h2>
-
-            <video id="videoPlayer" controls>
-                Your browser does not support video.
+            <video controls>
+                <source src="videos/video1.mp4" type="video/mp4">
+                المتصفح ديالك ما كيدعمش تشغيل الفيديو.
             </video>
 
-        </section>
-    </main>
+            <p class="description">
+                هذا هو الفيديو الأول في الموقع.
+            </p>
 
-    <script src="script.js"></script>
+        </div>
+
+    </main>
 
 </body>
 </html>
