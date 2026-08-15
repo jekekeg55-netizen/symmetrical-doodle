@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>هيمنة العرب | منصة الفيديوهات</title>
 
     <style>
@@ -61,27 +62,17 @@
             font-size: 15px;
         }
 
-        .search input:focus {
-            border-color: #e63946;
-        }
-
         .container {
             width: 92%;
             max-width: 1200px;
             margin: 30px auto;
         }
 
-        .welcome {
-            margin-bottom: 25px;
-        }
-
         .welcome h1 {
-            margin: 0 0 8px;
-            font-size: 30px;
+            margin-bottom: 8px;
         }
 
         .welcome p {
-            margin: 0;
             color: #aaa;
         }
 
@@ -90,27 +81,28 @@
             border: 1px solid #292933;
             border-radius: 15px;
             overflow: hidden;
-            margin-bottom: 30px;
+            margin-top: 25px;
         }
 
         .video-title {
-            padding: 18px 20px 10px;
+            padding: 18px 20px;
         }
 
         .video-title h2 {
             margin: 0;
-            font-size: 22px;
         }
 
-        .video-wrapper {
-            background: #000;
-        }
-
-        video {
+        .player {
             width: 100%;
-            max-height: 650px;
-            display: block;
+            aspect-ratio: 16 / 9;
             background: #000;
+        }
+
+        .player iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
         }
 
         .info {
@@ -120,24 +112,21 @@
         .info p {
             color: #aaa;
             line-height: 1.8;
-            margin: 10px 0 0;
         }
 
         .actions {
             display: flex;
             gap: 10px;
-            margin-top: 18px;
-            flex-wrap: wrap;
+            margin-top: 15px;
         }
 
         .btn {
-            border: none;
+            border: 0;
             padding: 10px 18px;
             border-radius: 8px;
             background: #25252f;
             color: white;
             cursor: pointer;
-            font-size: 14px;
         }
 
         .btn:hover {
@@ -145,8 +134,7 @@
         }
 
         .section-title {
-            font-size: 22px;
-            margin: 35px 0 18px;
+            margin-top: 40px;
         }
 
         .videos-grid {
@@ -160,13 +148,6 @@
             border: 1px solid #292933;
             border-radius: 12px;
             overflow: hidden;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .mini-card:hover {
-            transform: translateY(-3px);
-            border-color: #e63946;
         }
 
         .mini-card img {
@@ -177,8 +158,8 @@
         }
 
         .mini-card h3 {
-            font-size: 15px;
             margin: 12px;
+            font-size: 15px;
         }
 
         footer {
@@ -187,7 +168,6 @@
             text-align: center;
             background: #15151c;
             color: #888;
-            border-top: 1px solid #292933;
         }
 
         @media (max-width: 800px) {
@@ -206,16 +186,8 @@
         }
 
         @media (max-width: 500px) {
-            .container {
-                width: 94%;
-            }
-
             .videos-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .welcome h1 {
-                font-size: 25px;
             }
         }
     </style>
@@ -248,26 +220,20 @@
         <p>شاهد أحدث الفيديوهات في مكان واحد.</p>
     </section>
 
-    <!-- الفيديو 1 -->
+    <!-- الفيديو الرئيسي -->
     <article class="video-card">
 
         <div class="video-title">
             <h2>الفيديو الأول</h2>
         </div>
 
-        <div class="video-wrapper">
-
-            <video
-                controls
-                controlsList="nodownload"
-                preload="metadata"
-                poster="./video1.jpg"
-                oncontextmenu="return false;"
-            >
-                <source src="./video1.mp4" type="video/mp4">
-                المتصفح ديالك ما كيدعمش تشغيل الفيديو.
-            </video>
-
+        <div class="player">
+            <iframe
+                src="https://player.mediadelivery.net/play/728993/f8b580c5-a179-4fb6-8f43-5292197c5de4"
+                loading="lazy"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowfullscreen>
+            </iframe>
         </div>
 
         <div class="info">
@@ -292,17 +258,16 @@
 
     </article>
 
-    <!-- الفيديوهات -->
     <h2 class="section-title">🎬 أحدث الفيديوهات</h2>
 
-    <section class="videos-grid" id="videosGrid">
+    <section class="videos-grid">
 
-        <div class="mini-card" data-title="الفيديو الأول">
+        <div class="mini-card">
             <img src="./video1.jpg" alt="الفيديو الأول">
             <h3>الفيديو الأول</h3>
         </div>
 
-        <div class="mini-card" data-title="الفيديو الثاني">
+        <div class="mini-card">
             <img src="./video2.jpg" alt="الفيديو الثاني">
             <h3>الفيديو الثاني</h3>
         </div>
@@ -312,62 +277,26 @@
 </main>
 
 <footer>
-    © 2026 هيمنة العرب — جميع الحقوق محفوظة
+    © 2026 هيمنة العرب
 </footer>
 
 <script>
-
     function likeVideo() {
         alert("شكراً على إعجابك ❤️");
     }
 
     function shareVideo() {
-
         if (navigator.share) {
-
             navigator.share({
                 title: "هيمنة العرب",
-                text: "شاهد هذا الفيديو على هيمنة العرب",
+                text: "شاهد هذا الفيديو",
                 url: window.location.href
             });
-
         } else {
-
             navigator.clipboard.writeText(window.location.href);
-
-            alert("تم نسخ رابط الموقع 🔗");
-
+            alert("تم نسخ الرابط 🔗");
         }
     }
-
-    const searchInput = document.getElementById("searchInput");
-
-    const cards = document.querySelectorAll(".mini-card");
-
-    searchInput.addEventListener("input", function () {
-
-        const search = this.value.toLowerCase().trim();
-
-        cards.forEach(function(card) {
-
-            const title = card
-                .getAttribute("data-title")
-                .toLowerCase();
-
-            if (title.includes(search)) {
-
-                card.style.display = "";
-
-            } else {
-
-                card.style.display = "none";
-
-            }
-
-        });
-
-    });
-
 </script>
 
 </body>
