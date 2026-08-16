@@ -1,119 +1,78 @@
 const videos = [
-
     {
         id: 1,
-
-        title: "فيديو تجريبي 1",
-
-        description:
-            "هذا وصف الفيديو الأول.",
-
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+1",
-
-        player:
-            "https://example.com/video1"
+        title: "فيديو 1",
+        description: "وصف الفيديو الأول",
+        thumbnail: "ضع_رابط_الصورة_هنا",
+        player: "ضع_رابط_Player_هنا"
     },
 
     {
         id: 2,
-
-        title: "فيديو تجريبي 2",
-
-        description:
-            "هذا وصف الفيديو الثاني.",
-
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+2",
-
-        player:
-            "https://example.com/video2"
+        title: "فيديو 2",
+        description: "وصف الفيديو الثاني",
+        thumbnail: "ضع_رابط_الصورة_هنا",
+        player: "ضع_رابط_Player_هنا"
     },
 
     {
         id: 3,
-
-        title: "فيديو تجريبي 3",
-
-        description:
-            "هذا وصف الفيديو الثالث.",
-
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+3",
-
-        player:
-            "https://example.com/video3"
+        title: "فيديو 3",
+        description: "وصف الفيديو الثالث",
+        thumbnail: "ضع_رابط_الصورة_هنا",
+        player: "ضع_رابط_Player_هنا"
     }
-
 ];
 
 
-const grid =
-    document.getElementById("videosGrid");
+const grid = document.getElementById("videosGrid");
 
-
-/* الصفحة الرئيسية */
-
-if (grid) {
-
-    showVideos(videos, grid);
-
-}
-
-
-/* عرض الفيديوهات */
 
 function showVideos(list, container) {
+
+    if (!container) return;
 
     container.innerHTML = "";
 
     list.forEach(video => {
 
-        const card =
-            document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className =
-            "video-card";
-
+        card.className = "video-card";
 
         card.innerHTML = `
-
             <div class="thumbnail">
-
                 <img
                     src="${video.thumbnail}"
                     alt="${video.title}"
                 >
-
             </div>
 
             <div class="video-info">
-
-                <h2>
-                    ${video.title}
-                </h2>
+                <h2>${video.title}</h2>
 
                 <p>
                     ${video.description}
                 </p>
-
             </div>
-
         `;
 
-
-        card.onclick = function () {
+        card.addEventListener("click", function () {
 
             window.location.href =
                 "video.html?id=" + video.id;
 
-        };
-
+        });
 
         container.appendChild(card);
-
     });
+}
 
+
+/* الصفحة الرئيسية */
+
+if (grid) {
+    showVideos(videos, grid);
 }
 
 
@@ -122,16 +81,14 @@ function showVideos(list, container) {
 const searchInput =
     document.getElementById("searchInput");
 
-
-if (searchInput) {
+if (searchInput && grid) {
 
     searchInput.addEventListener(
         "input",
         function () {
 
             const text =
-                this.value.toLowerCase();
-
+                this.value.toLowerCase().trim();
 
             const result =
                 videos.filter(video =>
@@ -140,15 +97,9 @@ if (searchInput) {
                         .includes(text)
                 );
 
-
-            showVideos(
-                result,
-                grid
-            );
-
+            showVideos(result, grid);
         }
     );
-
 }
 
 
@@ -157,7 +108,6 @@ if (searchInput) {
 const player =
     document.getElementById("player");
 
-
 if (player) {
 
     const params =
@@ -165,16 +115,13 @@ if (player) {
             window.location.search
         );
 
-
     const id =
         Number(params.get("id"));
-
 
     const video =
         videos.find(
             item => item.id === id
         );
-
 
     if (video) {
 
@@ -183,42 +130,37 @@ if (player) {
         ).textContent =
             video.title;
 
-
         document.getElementById(
             "videoDescription"
         ).textContent =
             video.description;
 
-
         player.src =
             video.player;
 
+
+        const relatedVideos =
+            document.getElementById(
+                "relatedVideos"
+            );
 
         const related =
             videos.filter(
                 item => item.id !== video.id
             );
 
-
         showVideos(
             related,
-            document.getElementById(
-                "relatedVideos"
-            )
+            relatedVideos
         );
-
     }
-
 }
 
 
 /* الإعجاب */
 
 const likeButton =
-    document.getElementById(
-        "likeButton"
-    );
-
+    document.getElementById("likeButton");
 
 if (likeButton) {
 
@@ -232,11 +174,7 @@ if (likeButton) {
                 );
 
             count.textContent =
-                Number(
-                    count.textContent
-                ) + 1;
-
+                Number(count.textContent) + 1;
         }
     );
-
 }
