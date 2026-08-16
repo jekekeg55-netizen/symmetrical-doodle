@@ -1,118 +1,96 @@
 const videos = [
 
-    {
-        id: 1,
+  {
+    id: 1,
+    title: "فيديو 1",
+    description: "وصف الفيديو الأول",
 
-        title: "فيديو تجريبي 1",
+    thumbnail: "ضع رابط Thumbnail هنا",
 
-        description:
-            "هذا وصف الفيديو الأول.",
+    player: "ضع رابط Bunny Player هنا"
+  },
 
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+1",
+  {
+    id: 2,
+    title: "فيديو 2",
+    description: "وصف الفيديو الثاني",
 
-        player:
-            "https://example.com/video1"
-    },
+    thumbnail: "ضع رابط Thumbnail هنا",
 
-    {
-        id: 2,
+    player: "ضع رابط Bunny Player هنا"
+  },
 
-        title: "فيديو تجريبي 2",
+  {
+    id: 3,
+    title: "فيديو 3",
+    description: "وصف الفيديو الثالث",
 
-        description:
-            "هذا وصف الفيديو الثاني.",
+    thumbnail: "ضع رابط Thumbnail هنا",
 
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+2",
-
-        player:
-            "https://example.com/video2"
-    },
-
-    {
-        id: 3,
-
-        title: "فيديو تجريبي 3",
-
-        description:
-            "هذا وصف الفيديو الثالث.",
-
-        thumbnail:
-            "https://placehold.co/800x450/15151c/ffffff?text=VIDEO+3",
-
-        player:
-            "https://example.com/video3"
-    }
+    player: "ضع رابط Bunny Player هنا"
+  }
 
 ];
 
 
 const grid =
-    document.getElementById("videosGrid");
+  document.getElementById("videosGrid");
+
+
+function showVideos(list, container) {
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  list.forEach(video => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "video-card";
+
+    card.innerHTML = `
+      <div class="thumbnail">
+
+        <img
+          src="${video.thumbnail}"
+          alt="${video.title}"
+        >
+
+      </div>
+
+      <div class="video-info">
+
+        <h2>${video.title}</h2>
+
+        <p>${video.description}</p>
+
+      </div>
+    `;
+
+    card.onclick = () => {
+
+      window.location.href =
+        "video.html?id=" + video.id;
+
+    };
+
+    container.appendChild(card);
+
+  });
+
+}
 
 
 /* الصفحة الرئيسية */
 
 if (grid) {
 
-    showVideos(videos, grid);
-
-}
-
-
-/* عرض الفيديوهات */
-
-function showVideos(list, container) {
-
-    container.innerHTML = "";
-
-    list.forEach(video => {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "video-card";
-
-
-        card.innerHTML = `
-
-            <div class="thumbnail">
-
-                <img
-                    src="${video.thumbnail}"
-                    alt="${video.title}"
-                >
-
-            </div>
-
-            <div class="video-info">
-
-                <h2>
-                    ${video.title}
-                </h2>
-
-                <p>
-                    ${video.description}
-                </p>
-
-            </div>
-
-        `;
-
-
-        card.onclick = function () {
-
-            window.location.href =
-                "video.html?id=" + video.id;
-
-        };
-
-
-        container.appendChild(card);
-
-    });
+  showVideos(
+    videos,
+    grid
+  );
 
 }
 
@@ -120,34 +98,33 @@ function showVideos(list, container) {
 /* البحث */
 
 const searchInput =
-    document.getElementById("searchInput");
+  document.getElementById("searchInput");
 
+if (searchInput && grid) {
 
-if (searchInput) {
+  searchInput.addEventListener(
+    "input",
+    function () {
 
-    searchInput.addEventListener(
-        "input",
-        function () {
+      const text =
+        this.value
+          .toLowerCase()
+          .trim();
 
-            const text =
-                this.value.toLowerCase();
+      const result =
+        videos.filter(video =>
+          video.title
+            .toLowerCase()
+            .includes(text)
+        );
 
+      showVideos(
+        result,
+        grid
+      );
 
-            const result =
-                videos.filter(video =>
-                    video.title
-                        .toLowerCase()
-                        .includes(text)
-                );
-
-
-            showVideos(
-                result,
-                grid
-            );
-
-        }
-    );
+    }
+  );
 
 }
 
@@ -155,59 +132,55 @@ if (searchInput) {
 /* صفحة المشاهدة */
 
 const player =
-    document.getElementById("player");
-
+  document.getElementById("player");
 
 if (player) {
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const id =
+    Number(
+      params.get("id")
+    );
+
+  const video =
+    videos.find(
+      item => item.id === id
+    );
+
+  if (video) {
+
+    document.getElementById(
+      "videoTitle"
+    ).textContent =
+      video.title;
+
+    document.getElementById(
+      "videoDescription"
+    ).textContent =
+      video.description;
+
+    player.src =
+      video.player;
 
 
-    const id =
-        Number(params.get("id"));
+    const related =
+      videos.filter(
+        item =>
+          item.id !== video.id
+      );
 
+    showVideos(
+      related,
+      document.getElementById(
+        "relatedVideos"
+      )
+    );
 
-    const video =
-        videos.find(
-            item => item.id === id
-        );
-
-
-    if (video) {
-
-        document.getElementById(
-            "videoTitle"
-        ).textContent =
-            video.title;
-
-
-        document.getElementById(
-            "videoDescription"
-        ).textContent =
-            video.description;
-
-
-        player.src =
-            video.player;
-
-
-        const related =
-            videos.filter(
-                item => item.id !== video.id
-            );
-
-
-        showVideos(
-            related,
-            document.getElementById(
-                "relatedVideos"
-            )
-        );
-
-    }
+  }
 
 }
 
@@ -215,28 +188,25 @@ if (player) {
 /* الإعجاب */
 
 const likeButton =
-    document.getElementById(
-        "likeButton"
-    );
-
+  document.getElementById(
+    "likeButton"
+  );
 
 if (likeButton) {
 
-    likeButton.addEventListener(
-        "click",
-        function () {
+  likeButton.onclick =
+    function () {
 
-            const count =
-                document.getElementById(
-                    "likeCount"
-                );
+      const count =
+        document.getElementById(
+          "likeCount"
+        );
 
-            count.textContent =
-                Number(
-                    count.textContent
-                ) + 1;
+      count.textContent =
+        Number(
+          count.textContent
+        ) + 1;
 
-        }
-    );
+    };
 
 }
