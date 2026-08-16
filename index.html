@@ -1,37 +1,156 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>هيمنة العرب</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+const videos = [
+  {
+    id: 1,
+    title: "فيديو 1",
+    description: "وصف الفيديو الأول",
+    thumbnail: "https://placehold.co/800x450?text=VIDEO+1",
+    player: "ضع_رابط_Bunny_Player_هنا"
+  },
 
-<body>
+  {
+    id: 2,
+    title: "فيديو 2",
+    description: "وصف الفيديو الثاني",
+    thumbnail: "https://placehold.co/800x450?text=VIDEO+2",
+    player: "ضع_رابط_Bunny_Player_هنا"
+  },
 
-<header>
-  <a class="logo" href="index.html">هيمنة العرب</a>
+  {
+    id: 3,
+    title: "فيديو 3",
+    description: "وصف الفيديو الثالث",
+    thumbnail: "https://placehold.co/800x450?text=VIDEO+3",
+    player: "ضع_رابط_Bunny_Player_هنا"
+  }
+];
 
-  <input
-    id="searchInput"
-    type="search"
-    placeholder="🔎 ابحث عن فيديو..."
-  >
-</header>
+function showVideos(list, container) {
+  if (!container) return;
 
-<main>
+  container.innerHTML = "";
 
-  <h1>الفيديوهات المترجمة</h1>
+  list.forEach(video => {
+    const card = document.createElement("article");
 
-  <div id="videosGrid" class="videos-grid"></div>
+    card.className = "video-card";
 
-</main>
+    card.innerHTML = `
+      <div class="thumbnail">
+        <img src="${video.thumbnail}" alt="${video.title}">
+      </div>
 
-<footer>
-  © 2026 هيمنة العرب
-</footer>
+      <div class="video-info">
+        <h2>${video.title}</h2>
+        <p>${video.description}</p>
+      </div>
+    `;
 
-<script src="script.js"></script>
+    card.addEventListener("click", () => {
+      window.location.href =
+        "video.html?id=" + video.id;
+    });
 
-</body>
-</html>
+    container.appendChild(card);
+  });
+}
+
+
+/* الصفحة الرئيسية */
+
+const videosGrid =
+  document.getElementById("videosGrid");
+
+if (videosGrid) {
+  showVideos(videos, videosGrid);
+}
+
+
+/* البحث */
+
+const searchInput =
+  document.getElementById("searchInput");
+
+if (searchInput && videosGrid) {
+
+  searchInput.addEventListener("input", () => {
+
+    const search =
+      searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const results =
+      videos.filter(video =>
+        video.title
+          .toLowerCase()
+          .includes(search)
+      );
+
+    showVideos(results, videosGrid);
+  });
+}
+
+
+/* صفحة المشاهدة */
+
+const player =
+  document.getElementById("player");
+
+if (player) {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const id =
+    Number(params.get("id"));
+
+  const video =
+    videos.find(
+      item => item.id === id
+    );
+
+  if (video) {
+
+    document.getElementById(
+      "videoTitle"
+    ).textContent = video.title;
+
+    document.getElementById(
+      "videoDescription"
+    ).textContent = video.description;
+
+    player.src = video.player;
+
+    const related =
+      videos.filter(
+        item => item.id !== video.id
+      );
+
+    showVideos(
+      related,
+      document.getElementById(
+        "relatedVideos"
+      )
+    );
+  }
+}
+
+
+/* الإعجاب */
+
+const likeButton =
+  document.getElementById("likeButton");
+
+if (likeButton) {
+
+  likeButton.addEventListener("click", () => {
+
+    const count =
+      document.getElementById("likeCount");
+
+    count.textContent =
+      Number(count.textContent) + 1;
+  });
+}
