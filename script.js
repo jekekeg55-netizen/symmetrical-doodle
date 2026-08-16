@@ -1,43 +1,33 @@
 const videos = [
-
   {
     id: 1,
     title: "فيديو مترجم 1",
     description: "وصف الفيديو الأول.",
-
-    thumbnail:
-      "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+1",
-
-    player:
-      "ضع_رابط_Player_هنا"
+    thumbnail: "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+1",
+    player: "ضع_رابط_Player_الأول_هنا"
   },
 
   {
     id: 2,
     title: "فيديو مترجم 2",
     description: "وصف الفيديو الثاني.",
-
-    thumbnail:
-      "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+2",
-
-    player:
-      "ضع_رابط_Player_هنا"
+    thumbnail: "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+2",
+    player: "ضع_رابط_Player_الثاني_هنا"
   },
 
   {
     id: 3,
     title: "فيديو مترجم 3",
     description: "وصف الفيديو الثالث.",
-
-    thumbnail:
-      "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+3",
-
-    player:
-      "ضع_رابط_Player_هنا"
+    thumbnail: "https://placehold.co/800x450/12141a/ffffff?text=VIDEO+3",
+    player: "ضع_رابط_Player_الثالث_هنا"
   }
-
 ];
 
+
+/* =========================
+   إنشاء كروت الفيديو
+========================= */
 
 function renderVideos(list, container) {
 
@@ -45,10 +35,18 @@ function renderVideos(list, container) {
 
   container.innerHTML = "";
 
+  if (list.length === 0) {
+    container.innerHTML = `
+      <p class="no-results">
+        ما لقيت حتى فيديو.
+      </p>
+    `;
+    return;
+  }
+
   list.forEach(video => {
 
-    const card =
-      document.createElement("article");
+    const card = document.createElement("article");
 
     card.className = "video-card";
 
@@ -61,7 +59,9 @@ function renderVideos(list, container) {
           loading="lazy"
         >
 
-        <div class="play-icon">▶</div>
+        <div class="play-icon">
+          ▶
+        </div>
 
       </div>
 
@@ -74,17 +74,26 @@ function renderVideos(list, container) {
       </div>
     `;
 
-    card.onclick = () => {
+
+    /* الكليك على الفيديو */
+
+    card.addEventListener("click", function () {
+
       window.location.href =
-        "watch.html?id=" + video.id;
-    };
+        "./watch.html?id=" + encodeURIComponent(video.id);
+
+    });
+
 
     container.appendChild(card);
+
   });
 }
 
 
-/* الرئيسية */
+/* =========================
+   الصفحة الرئيسية
+========================= */
 
 const videosGrid =
   document.getElementById("videosGrid");
@@ -96,17 +105,22 @@ if (videosGrid) {
     videosGrid
   );
 
-  const count =
+
+  const videoCount =
     document.getElementById("videoCount");
 
-  if (count) {
-    count.textContent =
+  if (videoCount) {
+
+    videoCount.textContent =
       `${videos.length} فيديو`;
+
   }
 }
 
 
-/* البحث */
+/* =========================
+   البحث
+========================= */
 
 const searchInput =
   document.getElementById("searchInput");
@@ -115,30 +129,48 @@ if (searchInput && videosGrid) {
 
   searchInput.addEventListener(
     "input",
-    () => {
+    function () {
 
       const query =
-        searchInput.value
+        this.value
           .toLowerCase()
           .trim();
 
+
       const results =
         videos.filter(video =>
+
           video.title
             .toLowerCase()
             .includes(query)
+
         );
+
 
       renderVideos(
         results,
         videosGrid
       );
+
+
+      const videoCount =
+        document.getElementById("videoCount");
+
+      if (videoCount) {
+
+        videoCount.textContent =
+          `${results.length} فيديو`;
+
+      }
+
     }
   );
 }
 
 
-/* صفحة المشاهدة */
+/* =========================
+   صفحة مشاهدة الفيديو
+========================= */
 
 const player =
   document.getElementById("player");
@@ -150,71 +182,107 @@ if (player) {
       window.location.search
     );
 
+
   const id =
     Number(params.get("id"));
+
 
   const video =
     videos.find(
       item => item.id === id
     );
 
+
   if (!video) {
 
     window.location.href =
-      "index.html";
+      "./index.html";
 
   } else {
 
     document.title =
       `${video.title} | هيمنة العرب`;
 
-    document.getElementById(
-      "videoTitle"
-    ).textContent =
-      video.title;
 
-    document.getElementById(
-      "videoDescription"
-    ).textContent =
-      video.description;
+    const title =
+      document.getElementById(
+        "videoTitle"
+      );
+
+    if (title) {
+      title.textContent =
+        video.title;
+    }
+
+
+    const description =
+      document.getElementById(
+        "videoDescription"
+      );
+
+    if (description) {
+      description.textContent =
+        video.description;
+    }
+
+
+    /*
+      Bunny Player
+    */
 
     player.src =
       video.player;
 
-    renderRelated(
+
+    /*
+      الفيديوهات المقترحة
+    */
+
+    renderRelatedVideos(
       video.id
     );
+
   }
 }
 
 
-/* الفيديوهات المقترحة */
+/* =========================
+   الفيديوهات المقترحة
+========================= */
 
-function renderRelated(currentId) {
+function renderRelatedVideos(currentId) {
 
   const container =
     document.getElementById(
       "relatedVideos"
     );
 
+
   if (!container) return;
+
+
+  container.innerHTML = "";
+
 
   const related =
     videos.filter(
-      video => video.id !== currentId
+      video =>
+        video.id !== currentId
     );
 
-  container.innerHTML = "";
 
   related.forEach(video => {
 
     const item =
       document.createElement("div");
 
+
     item.className =
       "related-card";
 
+
     item.innerHTML = `
+
       <div class="related-thumb">
 
         <img
@@ -226,51 +294,77 @@ function renderRelated(currentId) {
       </div>
 
       <div class="related-title">
+
         ${video.title}
+
       </div>
+
     `;
 
-    item.onclick = () => {
 
-      window.location.href =
-        "watch.html?id=" + video.id;
+    item.addEventListener(
+      "click",
+      function () {
 
-    };
+        window.location.href =
+          "./watch.html?id=" +
+          encodeURIComponent(video.id);
+
+      }
+    );
+
 
     container.appendChild(item);
+
   });
 }
 
 
-/* الإعجاب */
+/* =========================
+   زر الإعجاب
+========================= */
 
 const likeButton =
   document.getElementById(
     "likeButton"
   );
 
+
 if (likeButton) {
 
-  likeButton.onclick = () => {
+  likeButton.addEventListener(
+    "click",
+    function () {
 
-    const count =
-      document.getElementById(
-        "likeCount"
+      const count =
+        document.getElementById(
+          "likeCount"
+        );
+
+
+      if (
+        likeButton.classList.contains(
+          "liked"
+        )
+      ) {
+        return;
+      }
+
+
+      if (count) {
+
+        count.textContent =
+          Number(
+            count.textContent
+          ) + 1;
+
+      }
+
+
+      likeButton.classList.add(
+        "liked"
       );
 
-    if (
-      likeButton.classList.contains(
-        "liked"
-      )
-    ) {
-      return;
     }
-
-    count.textContent =
-      Number(count.textContent) + 1;
-
-    likeButton.classList.add(
-      "liked"
-    );
-  };
+  );
 }
