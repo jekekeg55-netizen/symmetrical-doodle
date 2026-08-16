@@ -1,320 +1,65 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>هيمنة العرب</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <title>هيمنة العرب</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, Tahoma, sans-serif;
-      background: #0b0b0f;
-      color: #fff;
-    }
-
-    header {
-      background: #15151c;
-      border-bottom: 1px solid #292933;
-      padding: 18px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    .header {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: #e63946;
-    }
-
-    .search {
-      width: 400px;
-      max-width: 100%;
-    }
-
-    .search input {
-      width: 100%;
-      padding: 12px 18px;
-      border-radius: 25px;
-      border: 1px solid #333;
-      background: #22222b;
-      color: white;
-      outline: none;
-      font-size: 15px;
-    }
-
-    main {
-      max-width: 1200px;
-      width: 92%;
-      margin: 35px auto;
-    }
-
-    .welcome h1 {
-      margin-bottom: 8px;
-    }
-
-    .welcome p {
-      color: #999;
-    }
-
-    .videos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 30px;
-    }
-
-    .video-card {
-      background: #17171e;
-      border: 1px solid #292933;
-      border-radius: 14px;
-      overflow: hidden;
-      transition: .2s;
-      cursor: pointer;
-    }
-
-    .video-card:hover {
-      transform: translateY(-4px);
-      border-color: #e63946;
-    }
-
-    .thumb {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      background: #000;
-    }
-
-    .thumb iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      pointer-events: none;
-    }
-
-    .video-info {
-      padding: 14px;
-    }
-
-    .video-info h2 {
-      font-size: 17px;
-      margin: 0 0 8px;
-    }
-
-    .video-info p {
-      color: #999;
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .like {
-      margin-top: 13px;
-      padding: 8px 13px;
-      border: 0;
-      border-radius: 8px;
-      background: #292933;
-      color: white;
-      cursor: pointer;
-    }
-
-    .like:hover {
-      background: #e63946;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 60px;
-      padding: 25px;
-      background: #15151c;
-      color: #777;
-    }
-
-    @media (max-width: 800px) {
-      .header {
-        flex-direction: column;
-      }
-
-      .search {
-        width: 100%;
-      }
-
-      .videos-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 520px) {
-      .videos-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="header">
+<header class="header">
 
     <div class="logo">
-      هيمنة <span>العرب</span>
+        هيمنة العرب
     </div>
 
-    <div class="search">
-      <input
-        type="search"
-        id="search"
-        placeholder="🔎 ابحث عن فيديو..."
-      >
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔎 ابحث عن فيديو..."
+        >
     </div>
 
-  </div>
 </header>
+
 
 <main>
 
-  <section class="welcome">
-    <h1>أحدث الفيديوهات</h1>
-    <p>شاهد الفيديوهات المتاحة على المنصة.</p>
-  </section>
+    <section class="hero">
 
-  <section class="videos-grid" id="videos">
+        <h1>الفيديوهات المترجمة</h1>
 
-    <!-- الفيديو 1 -->
-    <article class="video-card" data-title="الفيديو الأول">
+        <p>
+            شاهد أحدث الفيديوهات المتاحة على المنصة
+        </p>
 
-      <div class="thumb">
-        <iframe
-          src="https://player.mediadelivery.net/play/728993/f8b580c5-a179-4fb6-8f43-5292197c5de4"
-          loading="lazy"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="video-info">
-        <h2>الفيديو الأول</h2>
-        <p>وصف الفيديو الأول.</p>
-
-        <button class="like" onclick="like(this)">
-          ❤️ إعجاب <span>0</span>
-        </button>
-      </div>
-
-    </article>
+    </section>
 
 
-    <!-- الفيديو 2 -->
-    <article class="video-card" data-title="الفيديو الثاني">
-
-      <div class="thumb">
-        <iframe
-          src="https://player.mediadelivery.net/play/728993/0c87a5be-fb64-4046-8f50-8fd390a1ac3b"
-          loading="lazy"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="video-info">
-        <h2>الفيديو الثاني</h2>
-        <p>وصف الفيديو الثاني.</p>
-
-        <button class="like" onclick="like(this)">
-          ❤️ إعجاب <span>0</span>
-        </button>
-      </div>
-
-    </article>
-
-
-    <!-- الفيديو 3 -->
-    <article class="video-card" data-title="الفيديو الثالث">
-
-      <div class="thumb">
-        <iframe
-          src="https://player.mediadelivery.net/play/728993/7c0bcedc-41dd-4950-8baa-27b03fab580e"
-          loading="lazy"
-          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="video-info">
-        <h2>الفيديو الثالث</h2>
-        <p>وصف الفيديو الثالث.</p>
-
-        <button class="like" onclick="like(this)">
-          ❤️ إعجاب <span>0</span>
-        </button>
-      </div>
-
-    </article>
-
-  </section>
+    <!-- هنا غادي يبانوا الفيديوهات -->
+    <section
+        class="videos-grid"
+        id="videosGrid">
+    </section>
 
 </main>
 
+
 <footer>
-  © 2026 هيمنة العرب
+
+    <p>© 2026 هيمنة العرب</p>
+
 </footer>
 
 
-<script>
-
-  function like(button) {
-
-    const number = button.querySelector("span");
-
-    let likes = Number(number.textContent);
-
-    likes++;
-
-    number.textContent = likes;
-  }
-
-
-  const search = document.getElementById("search");
-
-  const cards = document.querySelectorAll(".video-card");
-
-  search.addEventListener("input", function () {
-
-    const value = this.value.toLowerCase();
-
-    cards.forEach(function (card) {
-
-      const title = card.dataset.title.toLowerCase();
-
-      if (title.includes(value)) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
-      }
-
-    });
-
-  });
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
