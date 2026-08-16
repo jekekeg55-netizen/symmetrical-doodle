@@ -1,156 +1,68 @@
-const videos = [
-  {
-    id: 1,
-    title: "فيديو 1",
-    description: "وصف الفيديو الأول",
-    thumbnail: "https://placehold.co/800x450?text=VIDEO+1",
-    player: "ضع_رابط_Bunny_Player_هنا"
-  },
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هيمنة العرب | فيديوهات مترجمة</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  {
-    id: 2,
-    title: "فيديو 2",
-    description: "وصف الفيديو الثاني",
-    thumbnail: "https://placehold.co/800x450?text=VIDEO+2",
-    player: "ضع_رابط_Bunny_Player_هنا"
-  },
+<body>
 
-  {
-    id: 3,
-    title: "فيديو 3",
-    description: "وصف الفيديو الثالث",
-    thumbnail: "https://placehold.co/800x450?text=VIDEO+3",
-    player: "ضع_رابط_Bunny_Player_هنا"
-  }
-];
+<header class="site-header">
+  <div class="header-inner">
 
-function showVideos(list, container) {
-  if (!container) return;
+    <a href="index.html" class="logo">
+      هيمنة العرب
+    </a>
 
-  container.innerHTML = "";
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="#translated">فيديوهات مترجمة</a>
+    </nav>
 
-  list.forEach(video => {
-    const card = document.createElement("article");
+    <div class="search">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="ابحث عن فيديو..."
+      >
+    </div>
 
-    card.className = "video-card";
+  </div>
+</header>
 
-    card.innerHTML = `
-      <div class="thumbnail">
-        <img src="${video.thumbnail}" alt="${video.title}">
-      </div>
+<main>
 
-      <div class="video-info">
-        <h2>${video.title}</h2>
-        <p>${video.description}</p>
-      </div>
-    `;
+  <section class="hero">
+    <div>
+      <span>منصة الفيديو</span>
+      <h1>فيديوهات مترجمة</h1>
+      <p>
+        شاهد أحدث الفيديوهات المضافة إلى هيمنة العرب.
+      </p>
+    </div>
+  </section>
 
-    card.addEventListener("click", () => {
-      window.location.href =
-        "video.html?id=" + video.id;
-    });
+  <section id="translated">
 
-    container.appendChild(card);
-  });
-}
+    <div class="section-title">
+      <h2>أحدث الفيديوهات</h2>
+      <span id="videoCount"></span>
+    </div>
 
+    <div id="videosGrid" class="videos-grid"></div>
 
-/* الصفحة الرئيسية */
+  </section>
 
-const videosGrid =
-  document.getElementById("videosGrid");
+</main>
 
-if (videosGrid) {
-  showVideos(videos, videosGrid);
-}
+<footer>
+  <strong>هيمنة العرب</strong>
+  <p>جميع الحقوق محفوظة © 2026</p>
+</footer>
 
+<script src="script.js"></script>
 
-/* البحث */
-
-const searchInput =
-  document.getElementById("searchInput");
-
-if (searchInput && videosGrid) {
-
-  searchInput.addEventListener("input", () => {
-
-    const search =
-      searchInput.value
-        .toLowerCase()
-        .trim();
-
-    const results =
-      videos.filter(video =>
-        video.title
-          .toLowerCase()
-          .includes(search)
-      );
-
-    showVideos(results, videosGrid);
-  });
-}
-
-
-/* صفحة المشاهدة */
-
-const player =
-  document.getElementById("player");
-
-if (player) {
-
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
-
-  const id =
-    Number(params.get("id"));
-
-  const video =
-    videos.find(
-      item => item.id === id
-    );
-
-  if (video) {
-
-    document.getElementById(
-      "videoTitle"
-    ).textContent = video.title;
-
-    document.getElementById(
-      "videoDescription"
-    ).textContent = video.description;
-
-    player.src = video.player;
-
-    const related =
-      videos.filter(
-        item => item.id !== video.id
-      );
-
-    showVideos(
-      related,
-      document.getElementById(
-        "relatedVideos"
-      )
-    );
-  }
-}
-
-
-/* الإعجاب */
-
-const likeButton =
-  document.getElementById("likeButton");
-
-if (likeButton) {
-
-  likeButton.addEventListener("click", () => {
-
-    const count =
-      document.getElementById("likeCount");
-
-    count.textContent =
-      Number(count.textContent) + 1;
-  });
-}
+</body>
+</html>
