@@ -1,56 +1,35 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>مشاهدة الفيديو - هيمنة العرب</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هيمنة العرب</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <a href="index.html" class="logo">
-        هيمنة العرب
-    </a>
+  <a class="logo" href="index.html">هيمنة العرب</a>
+
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="🔎 ابحث عن فيديو..."
+  >
 </header>
 
+<main>
 
-<main class="watch-page">
+  <h1>الفيديوهات المترجمة</h1>
 
-    <div class="player">
-
-        <iframe
-            id="player"
-            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-            allowfullscreen>
-        </iframe>
-
-    </div>
-
-
-    <h1 id="videoTitle"></h1>
-
-    <p id="videoDescription"></p>
-
-
-    <button id="likeButton" class="like-button">
-        ❤️ إعجاب <span id="likeCount">0</span>
-    </button>
-
-
-    <h2>فيديوهات أخرى</h2>
-
-    <div
-        id="relatedVideos"
-        class="videos-grid">
-    </div>
+  <div id="videosGrid" class="videos-grid"></div>
 
 </main>
 
+<footer>
+  © 2026 هيمنة العرب
+</footer>
 
 <script src="script.js"></script>
 
