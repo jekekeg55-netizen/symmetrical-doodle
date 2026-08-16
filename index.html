@@ -1,180 +1,58 @@
-const videos = [
-    {
-        id: 1,
-        title: "فيديو 1",
-        description: "وصف الفيديو الأول",
-        thumbnail: "ضع_رابط_الصورة_هنا",
-        player: "ضع_رابط_Player_هنا"
-    },
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
-    {
-        id: 2,
-        title: "فيديو 2",
-        description: "وصف الفيديو الثاني",
-        thumbnail: "ضع_رابط_الصورة_هنا",
-        player: "ضع_رابط_Player_هنا"
-    },
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {
-        id: 3,
-        title: "فيديو 3",
-        description: "وصف الفيديو الثالث",
-        thumbnail: "ضع_رابط_الصورة_هنا",
-        player: "ضع_رابط_Player_هنا"
-    }
-];
+    <title>مشاهدة الفيديو - هيمنة العرب</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        هيمنة العرب
+    </a>
+</header>
 
 
-const grid = document.getElementById("videosGrid");
+<main class="watch-page">
+
+    <div class="player">
+
+        <iframe
+            id="player"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+            allowfullscreen>
+        </iframe>
+
+    </div>
 
 
-function showVideos(list, container) {
+    <h1 id="videoTitle"></h1>
 
-    if (!container) return;
-
-    container.innerHTML = "";
-
-    list.forEach(video => {
-
-        const card = document.createElement("div");
-
-        card.className = "video-card";
-
-        card.innerHTML = `
-            <div class="thumbnail">
-                <img
-                    src="${video.thumbnail}"
-                    alt="${video.title}"
-                >
-            </div>
-
-            <div class="video-info">
-                <h2>${video.title}</h2>
-
-                <p>
-                    ${video.description}
-                </p>
-            </div>
-        `;
-
-        card.addEventListener("click", function () {
-
-            window.location.href =
-                "video.html?id=" + video.id;
-
-        });
-
-        container.appendChild(card);
-    });
-}
+    <p id="videoDescription"></p>
 
 
-/* الصفحة الرئيسية */
-
-if (grid) {
-    showVideos(videos, grid);
-}
+    <button id="likeButton" class="like-button">
+        ❤️ إعجاب <span id="likeCount">0</span>
+    </button>
 
 
-/* البحث */
+    <h2>فيديوهات أخرى</h2>
 
-const searchInput =
-    document.getElementById("searchInput");
+    <div
+        id="relatedVideos"
+        class="videos-grid">
+    </div>
 
-if (searchInput && grid) {
-
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            const text =
-                this.value.toLowerCase().trim();
-
-            const result =
-                videos.filter(video =>
-                    video.title
-                        .toLowerCase()
-                        .includes(text)
-                );
-
-            showVideos(result, grid);
-        }
-    );
-}
+</main>
 
 
-/* صفحة المشاهدة */
+<script src="script.js"></script>
 
-const player =
-    document.getElementById("player");
-
-if (player) {
-
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-    const id =
-        Number(params.get("id"));
-
-    const video =
-        videos.find(
-            item => item.id === id
-        );
-
-    if (video) {
-
-        document.getElementById(
-            "videoTitle"
-        ).textContent =
-            video.title;
-
-        document.getElementById(
-            "videoDescription"
-        ).textContent =
-            video.description;
-
-        player.src =
-            video.player;
-
-
-        const relatedVideos =
-            document.getElementById(
-                "relatedVideos"
-            );
-
-        const related =
-            videos.filter(
-                item => item.id !== video.id
-            );
-
-        showVideos(
-            related,
-            relatedVideos
-        );
-    }
-}
-
-
-/* الإعجاب */
-
-const likeButton =
-    document.getElementById("likeButton");
-
-if (likeButton) {
-
-    likeButton.addEventListener(
-        "click",
-        function () {
-
-            const count =
-                document.getElementById(
-                    "likeCount"
-                );
-
-            count.textContent =
-                Number(count.textContent) + 1;
-        }
-    );
-}
+</body>
+</html>
