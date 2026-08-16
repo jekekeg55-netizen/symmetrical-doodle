@@ -1,227 +1,161 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: #0b0b0f;
-    color: white;
-    font-family: Arial, Tahoma, sans-serif;
+  margin: 0;
+  background: #0b0b0f;
+  color: white;
+  font-family: Arial, Tahoma, sans-serif;
 }
 
 header {
-    height: 70px;
-    background: #15151c;
-    border-bottom: 1px solid #292933;
+  background: #15151c;
+  border-bottom: 1px solid #292933;
+  padding: 16px 5%;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .logo {
-    color: white;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 header input {
-    width: 350px;
-    max-width: 45%;
+  width: 350px;
+  max-width: 100%;
 
-    padding: 12px 18px;
+  padding: 12px 18px;
 
-    border-radius: 25px;
-    border: 1px solid #333;
+  border: 1px solid #333;
+  border-radius: 25px;
 
-    background: #22222b;
-    color: white;
-
-    outline: none;
+  background: #22222b;
+  color: white;
+  outline: none;
 }
 
 main {
-    width: 92%;
-    max-width: 1200px;
-    margin: 35px auto;
-}
-
-h1 {
-    margin-bottom: 25px;
+  width: 92%;
+  max-width: 1200px;
+  margin: 35px auto;
 }
 
 .videos-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
 .video-card {
-    background: #17171e;
-
-    border: 1px solid #292933;
-
-    border-radius: 14px;
-
-    overflow: hidden;
-
-    cursor: pointer;
-
-    transition: 0.2s;
+  background: #17171e;
+  border: 1px solid #292933;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .video-card:hover {
-    transform: translateY(-5px);
-
-    border-color: #e63946;
+  transform: translateY(-4px);
 }
 
 .thumbnail {
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background: #222;
-
-    overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #222;
 }
 
 .thumbnail img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .video-info {
-    padding: 14px;
+  padding: 14px;
 }
 
 .video-info h2 {
-    font-size: 17px;
-
-    margin: 0;
+  font-size: 17px;
+  margin: 0;
 }
 
 .video-info p {
-    color: #999;
-
-    font-size: 14px;
-
-    margin-top: 8px;
+  color: #999;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .watch-page {
-    max-width: 1000px;
+  max-width: 1000px;
 }
 
 .player {
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background: black;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    margin-bottom: 25px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .player iframe {
-    width: 100%;
-    height: 100%;
-
-    border: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 #videoDescription {
-    color: #aaa;
-
-    line-height: 1.8;
-
-    margin-bottom: 20px;
+  color: #aaa;
+  line-height: 1.8;
 }
 
 .like-button {
-    border: none;
-
-    background: #25252f;
-
-    color: white;
-
-    padding: 11px 18px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    margin-bottom: 40px;
+  border: 0;
+  background: #25252f;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  margin: 15px 0 40px;
 }
 
 .like-button:hover {
-    background: #e63946;
+  background: #e63946;
 }
 
 footer {
-    text-align: center;
-
-    margin-top: 60px;
-
-    padding: 25px;
-
-    background: #15151c;
-
-    color: #777;
+  text-align: center;
+  margin-top: 60px;
+  padding: 25px;
+  background: #15151c;
+  color: #777;
 }
-
 
 @media (max-width: 800px) {
-
-    .videos-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    header input {
-        width: 250px;
-    }
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-
 
 @media (max-width: 550px) {
 
-    header {
-        height: auto;
+  header {
+    flex-direction: column;
+  }
 
-        padding: 15px;
+  header input {
+    width: 100%;
+  }
 
-        flex-direction: column;
-
-        gap: 15px;
-    }
-
-    header input {
-        max-width: 100%;
-        width: 100%;
-    }
-
-    .videos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    main {
-        width: 94%;
-    }
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
 }
