@@ -5,15 +5,10 @@
 :root {
   --bg: #08090c;
   --card: #12141a;
-  --card-hover: #191c24;
-  --border: #242832;
+  --border: #252a33;
   --text: #ffffff;
   --muted: #9299a8;
   --accent: #e63946;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -24,32 +19,24 @@ body {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
-
-/* HEADER */
-
-.site-header {
+.header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 10;
 
-  background: rgba(8, 9, 12, .94);
-  backdrop-filter: blur(12px);
-
-  border-bottom: 1px solid var(--border);
-}
-
-.header-inner {
-  width: min(1250px, 94%);
   min-height: 72px;
-  margin: auto;
+  padding: 12px 4%;
 
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
+
+  background: rgba(8, 9, 12, .95);
+  border-bottom: 1px solid var(--border);
 }
 
 .logo {
@@ -58,94 +45,70 @@ a {
   white-space: nowrap;
 }
 
-.logo::first-letter {
-  color: var(--accent);
-}
-
 nav {
   display: flex;
   gap: 20px;
 }
 
-nav a {
-  color: #cbd0da;
-  font-size: 14px;
+nav a,
+.back-top,
+.back-button {
+  color: var(--muted);
 }
 
-nav a:hover {
+nav a:hover,
+.back-top:hover,
+.back-button:hover {
   color: white;
 }
 
-.search {
-  margin-right: auto;
+#searchInput {
   width: 300px;
-}
-
-.search input {
-  width: 100%;
+  max-width: 100%;
+  margin-right: auto;
 
   padding: 12px 18px;
 
   border: 1px solid var(--border);
   border-radius: 25px;
 
-  outline: none;
-
   background: #111319;
   color: white;
-
-  font-size: 14px;
+  outline: none;
 }
-
-
-/* MAIN */
 
 main {
   width: min(1250px, 94%);
   margin: 35px auto 70px;
 }
 
-
-/* HERO */
-
 .hero {
-  min-height: 230px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 40px;
+  padding: 45px;
+  margin-bottom: 45px;
 
   border: 1px solid var(--border);
   border-radius: 22px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #171a22,
-      #0e1015
-    );
-
-  margin-bottom: 45px;
+  background: linear-gradient(
+    135deg,
+    #171a22,
+    #0e1015
+  );
 }
 
 .hero span {
   color: var(--accent);
-  font-size: 14px;
   font-weight: bold;
 }
 
 .hero h1 {
-  font-size: 40px;
   margin: 12px 0;
+  font-size: 40px;
 }
 
 .hero p {
   color: var(--muted);
 }
-
-
-/* SECTION */
 
 .section-title {
   display: flex;
@@ -161,71 +124,48 @@ main {
 
 #videoCount {
   color: var(--muted);
-  font-size: 14px;
 }
-
-
-/* VIDEO GRID */
 
 .videos-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 
-
-/* CARD */
-
 .video-card {
-  background: var(--card);
+  overflow: hidden;
 
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 15px;
 
-  overflow: hidden;
-
   cursor: pointer;
-
-  transition:
-    transform .2s ease,
-    border-color .2s ease,
-    background .2s ease;
+  transition: .2s;
 }
 
 .video-card:hover {
   transform: translateY(-5px);
   border-color: #3a404d;
-  background: var(--card-hover);
 }
 
 .thumbnail {
   position: relative;
-
   width: 100%;
   aspect-ratio: 16 / 9;
-
   background: #050505;
-
-  overflow: hidden;
 }
 
 .thumbnail img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
-  display: block;
 }
 
 .play-icon {
   position: absolute;
 
-  left: 50%;
   top: 50%;
+  left: 50%;
 
   transform: translate(-50%, -50%);
 
@@ -237,10 +177,7 @@ main {
   justify-content: center;
 
   border-radius: 50%;
-
   background: rgba(0, 0, 0, .75);
-
-  font-size: 20px;
 }
 
 .video-info {
@@ -249,158 +186,101 @@ main {
 
 .video-info h3 {
   margin: 0 0 8px;
-
   font-size: 17px;
-
-  line-height: 1.5;
 }
 
 .video-info p {
   margin: 0;
-
   color: var(--muted);
-
   font-size: 13px;
-
   line-height: 1.6;
 }
 
-
-/* WATCH PAGE */
+/* صفحة المشاهدة */
 
 .watch-layout {
   display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr) 320px;
-
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 25px;
-
   align-items: start;
-}
-
-.watch-main {
-  min-width: 0;
 }
 
 .back-button {
   display: inline-block;
-
   margin-bottom: 15px;
-
-  color: var(--muted);
-
-  font-size: 14px;
-}
-
-.back-button:hover {
-  color: white;
 }
 
 .player-box {
   width: 100%;
-
   aspect-ratio: 16 / 9;
-
-  background: black;
-
-  border-radius: 15px;
 
   overflow: hidden;
 
+  background: black;
   border: 1px solid var(--border);
+  border-radius: 15px;
 }
 
 .player-box iframe {
   width: 100%;
   height: 100%;
-
   border: 0;
 }
 
-.watch-info {
-  padding-top: 20px;
-}
-
 .watch-info h1 {
-  margin: 0 0 12px;
-
-  font-size: 26px;
-
+  font-size: 27px;
   line-height: 1.5;
 }
 
 #videoDescription {
   color: var(--muted);
-
   line-height: 1.8;
 }
 
-
-/* LIKE */
-
 .like-button {
-  margin-top: 20px;
-
-  border: 1px solid var(--border);
-
-  background: #151820;
-
-  color: white;
+  margin-top: 15px;
 
   padding: 11px 18px;
 
+  border: 1px solid var(--border);
   border-radius: 10px;
 
+  background: #151820;
+  color: white;
+
   cursor: pointer;
-
-  font-size: 14px;
-}
-
-.like-button:hover {
-  background: #252a35;
 }
 
 .like-button.liked {
   border-color: var(--accent);
 }
 
-
-/* SIDEBAR */
+/* الاقتراحات */
 
 .sidebar {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 15px;
+  position: sticky;
+  top: 95px;
 
   padding: 18px;
 
-  position: sticky;
-  top: 95px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 15px;
 }
 
 .sidebar h2 {
+  margin-top: 0;
   font-size: 18px;
-
-  margin: 0 0 15px;
 }
 
 .related-card {
   display: flex;
-
   gap: 10px;
 
   padding: 10px 0;
 
   border-bottom: 1px solid var(--border);
-
   cursor: pointer;
-}
-
-.related-card:last-child {
-  border-bottom: 0;
 }
 
 .related-thumb {
@@ -409,45 +289,33 @@ main {
 
   flex-shrink: 0;
 
-  border-radius: 7px;
-
   overflow: hidden;
-
+  border-radius: 7px;
   background: #050505;
 }
 
 .related-thumb img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
 }
 
 .related-title {
   font-size: 13px;
-
   line-height: 1.5;
 }
 
-
-/* FOOTER */
-
 footer {
+  padding: 35px 20px;
   text-align: center;
 
-  padding: 35px 20px;
-
   border-top: 1px solid var(--border);
-
   color: var(--muted);
 }
 
 footer strong {
   color: white;
 }
-
-
-/* RESPONSIVE */
 
 @media (max-width: 950px) {
 
@@ -458,45 +326,32 @@ footer strong {
   .sidebar {
     position: static;
   }
-
-  .related-card {
-    display: flex;
-  }
-
 }
 
 @media (max-width: 800px) {
 
   .videos-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   nav {
     display: none;
   }
-
-  .search {
-    width: 260px;
-  }
-
 }
 
 @media (max-width: 560px) {
 
-  .header-inner {
+  .header {
     flex-wrap: wrap;
-    padding: 12px 0;
   }
 
-  .search {
+  #searchInput {
     order: 3;
     width: 100%;
   }
 
   .hero {
     padding: 25px;
-    min-height: 180px;
   }
 
   .hero h1 {
@@ -506,9 +361,4 @@ footer strong {
   .videos-grid {
     grid-template-columns: 1fr;
   }
-
-  .watch-info h1 {
-    font-size: 21px;
-  }
-
 }
